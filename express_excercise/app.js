@@ -1,13 +1,20 @@
 var express = require('express');
 var app = express();
 
+app.use(express.static('public'));
+
 app.get('/', function(req, res) {
 	res.send('This is the home page');
 });
 
-app.get('/:thing', function(req, res) {
-	var thing = req.params.thing;
-	res.render('home.ejs', { thingVar: thing });
+app.get('/posts', function(req, res) {
+	var posts = [
+		{ title: 'Post 1', author: 'Suzy' },
+		{ title: 'Post 2', author: 'Lukas' },
+		{ title: 'Post 3', author: 'Taylor' }
+	];
+
+	res.render('posts.ejs', { posts: posts });
 });
 
 app.get('/speak/:animal/', function(req, res) {
