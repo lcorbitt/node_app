@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
 	res.send('This is the home page');
@@ -14,7 +15,7 @@ app.get('/posts', function(req, res) {
 		{ title: 'Post 3', author: 'Taylor' }
 	];
 
-	res.render('posts.ejs', { posts: posts });
+	res.render('posts', { posts: posts });
 });
 
 app.get('/speak/:animal/', function(req, res) {
